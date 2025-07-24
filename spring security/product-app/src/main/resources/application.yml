@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: PRODUCT-APP
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/practice
+    username: root
+    password: guru8296jadhav@
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+security:
+  secret-key: syedhegd48dhirfr4rfrfbhggdvidodk4ded565f6ffehhf
+  issuer: gurunath
+  expiration-time: 600000
