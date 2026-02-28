@@ -50,29 +50,23 @@ flowchart TD
 ### Cloud Service Models (IaaS, PaaS, SaaS)
 
 ```mermaid
-block-beta
-  columns 3
-  
-  block:IaaS
-    titleIaaS("IaaS (Infrastructure)")
-    I1("VMs, Storage, Network (Provider)")
-    I2("OS, Runtime, Middleware (You)")
-    I3("Data, Applications (You)")
-  end
+flowchart TD
+    subgraph IaaS ["IaaS (Infrastructure)"]
+        direction TB
+        I1["VMs, Storage, Network (Provider)"] ~~~ I2["OS, Runtime, Middleware (You)"] ~~~ I3["Data, Applications (You)"]
+    end
 
-  block:PaaS
-    titlePaaS("PaaS (Platform)")
-    P1("VMs, OS, Runtime (Provider)")
-    P2("Scaling, Load Balancing (Provider)")
-    P3("Data, Applications (You)")
-  end
+    subgraph PaaS ["PaaS (Platform)"]
+        direction TB
+        P1["VMs, OS, Runtime (Provider)"] ~~~ P2["Scaling, Load Balancing (Provider)"] ~~~ P3["Data, Applications (You)"]
+    end
 
-  block:SaaS
-    titleSaaS("SaaS (Software)")
-    S1("Everything from Hardware to OS (Provider)")
-    S2("Application Software (Provider)")
-    S3("Just use the Software (You)")
-  end
+    subgraph SaaS ["SaaS (Software)"]
+        direction TB
+        S1["Everything from Hardware to OS (Provider)"] ~~~ S2["Application Software (Provider)"] ~~~ S3["Just use the Software (You)"]
+    end
+    
+    IaaS ~~~ PaaS ~~~ SaaS
 ```
 
 - **IaaS (e.g., AWS EC2):** Raw infrastructure. You manage the OS and everything above.
@@ -131,7 +125,7 @@ EBS acts as a hard disk attached to your EC2 instance. It is **Availability Zone
 - Snapshots are **Region-specific**. They can be copied across regions for Disaster Recovery.
 
 ```mermaid
-flowchart LR
+flowchart TD
     V1["EBS Volume (Zone 1a)"] -->|Take Backup| SNAP["Snapshot (Stored in S3)"]
     SNAP -->|Create New Volume| V2["EBS Volume (Zone 1b)"]
 ```
